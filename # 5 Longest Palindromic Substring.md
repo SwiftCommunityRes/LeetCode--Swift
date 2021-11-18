@@ -86,6 +86,6 @@ class LongestPalindromicSubstring {
 * 时间复杂度： O(n^2)
 * 空间复杂度： O(1)
 
-点击前往 [LeetCode](https://leetcode.com/problems/longest-substring-without-repeating-characters/) 练习
+点击前往 [LeetCode](https://leetcode.com/problems/longest-palindromic-substring/) 练习
 
 该算法题解的 github 仓库地址是：[https://github.com/soapyigu/LeetCode-Swift](https://github.com/soapyigu/LeetCode-Swift "LeetCode-Swift")
