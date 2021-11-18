@@ -1,0 +1,91 @@
+## 前言
+
+我们社区从本期开始会将顾毅（**Netflix 增长黑客，《iOS 面试之道》作者，ACE 职业健身教练。微博:[@故胤道长](https://m.weibo.cn/u/1827884772 "@故胤道长")**）的 Swift 算法题题解整理为文字版以方便大家学习与阅读。
+
+不积跬步，无以至千里；不积小流，无以成江海，Swift社区 伴你前行。
+
+> 难度水平：中等
+
+## 1. 描述
+
+给定一个字符串 `s`, 返回 `s` 中的最长回文子字符串.
+
+
+## 2. 示例
+
+**示例 1**
+
+```
+输入： s = "babad"
+输出： "bab"
+解释： "aba" 同样是有效答案。
+```
+
+**示例 2**
+
+```
+输入： s = "cbbd"
+输出： "bb"
+```
+
+**示例 3**
+
+```
+输入： s = "a"
+输出： "a"
+```
+
+**示例 4**
+
+```
+输入： s = "ac"
+输出： "a"
+```
+
+约束条件：
+- `1 <= s.length <= 1000`
+- `s` 仅由数字和英文字母组成。
+
+## 3. 答案
+
+```swift
+class LongestPalindromicSubstring {
+    func longestPalindrome(_ s: String) -> String {
+        guard s.count > 1 else {
+            return s
+        }
+        
+        let sChars = Array(s)
+        var maxLen = 0, start = 0
+        
+        for i in 0..<sChars.count {
+            searchPalindrome(sChars, i, i, &start, &maxLen)
+            searchPalindrome(sChars, i, i + 1, &start, &maxLen)
+        }
+        
+        return String(sChars[start..<start + maxLen])
+    }
+    
+    private func searchPalindrome(_ chars: [Character], _ l: Int, _ r: Int, _ start: inout Int, _ maxLen: inout Int) {
+        var l = l, r = r
+        
+        while l >= 0 && r < chars.count && chars[l] == chars[r] {
+            l -= 1
+            r += 1
+        }
+        
+        if maxLen < r - l - 1 {
+            start = l + 1
+            maxLen = r - l - 1
+        }
+    }
+}
+```
+
+* 主要思想：从中心的每个索引中找到最长的回文字符串。
+* 时间复杂度： O(n^2)
+* 空间复杂度： O(1)
+
+点击前往 [LeetCode](https://leetcode.com/problems/longest-substring-without-repeating-characters/) 练习
+
+该算法题解的 github 仓库地址是：[https://github.com/soapyigu/LeetCode-Swift](https://github.com/soapyigu/LeetCode-Swift "LeetCode-Swift")
